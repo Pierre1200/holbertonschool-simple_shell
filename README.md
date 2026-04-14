@@ -51,4 +51,6 @@ Les petites fonctions d'aide pour ne pas surcharger les autres fichiers (Règle 
 * [ ] Fonctions d'affichage d'erreurs (pour formater les messages d'erreur exactement comme le vrai sh).
 
 # Flowchart
-![alt text](<Flowchart_projetPrintf 2.png>)
+The following diagram describes the logic of the `Simple_Shell` function:
+
+<img width="2239" height="3045" alt="Image" src="https://github.com/user-attachments/assets/181cf82c-f8b5-4b6e-b77e-142c9fda1c60" />
