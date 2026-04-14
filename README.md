@@ -49,3 +49,6 @@ Les commandes internes qui ne nécessitent pas de fork.
 Les petites fonctions d'aide pour ne pas surcharger les autres fichiers (Règle des 40 lignes de Betty).
 * [ ] Fonctions de libération de mémoire (ex: une fonction qui fait proprement un free sur un tableau à deux dimensions char **).
 * [ ] Fonctions d'affichage d'erreurs (pour formater les messages d'erreur exactement comme le vrai sh).
+
+# Flowchart
+![alt text](flowchart_simple_shell.jpeg)
