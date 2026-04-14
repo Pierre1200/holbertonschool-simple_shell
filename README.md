@@ -51,4 +51,4 @@ Les petites fonctions d'aide pour ne pas surcharger les autres fichiers (Règle 
 * [ ] Fonctions d'affichage d'erreurs (pour formater les messages d'erreur exactement comme le vrai sh).
 
 # Flowchart
-![alt text](flowchart_simple_shell.jpeg)
+![alt text](<Flowchart_projetPrintf 2.png>)
