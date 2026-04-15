@@ -28,7 +28,5 @@ int check_builtin(char *command)
 		}
 		return (1);
 	}
-
-	printf("%s : command not found\n", command);
 	return (0);
 }
