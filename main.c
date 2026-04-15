@@ -18,20 +18,29 @@ int main(int ac, char **av)
 
 	while (1)
 	{
+		/*Verif du mode interactif*/
 		if (isatty(0))
 			printf("($) ");
 
 		/*Simulation parser.c*/
 		read_line = getline(&line, &len, stdin);
 
+		/*Gestion des EOF*/
 		if (read_line == -1)
 		{
 			free(line);
 			exit(0);
 		}
 
+		/*Simulation début de parsing (découpe)*/
 		if (read_line > 0 && line[read_line - 1] == '\n')
 			line[read_line - 1] = '\0';
+
+		/*Simulation si ce n'est pas un builtin*/
+		if (check_builtin(line) == 0)
+		{
+		printf("%s : Command not found\n", line);
+		}
 
 		check_builtin(line);
 	}
