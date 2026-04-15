@@ -1,8 +1,13 @@
 #include "shell.h"
 
+/**
+ * check_builtin - checks and executes built-in commands
+ * @command: user command line
+ *
+ * Return: 1 if builtin handled, 0 otherwise
+ */
 int check_builtin(char *command)
 {
-	extern char **environ;
 	int i = 0;
 
 	if (command == NULL)
