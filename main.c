@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * main - Entry point for the simple shell loop
+ * @ac: Argument count
+ * @av: Argument vector
+ *
+ * Return: Always 0
+ */
 int main(int ac, char **av)
 {
 	char *line = NULL;
