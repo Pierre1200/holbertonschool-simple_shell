@@ -8,6 +8,8 @@
 
 int main(int ac, char **av);
 int check_builtin(char *command);
+char *find_path(char *command);
+extern char **environ;
 
 
 #endif
