@@ -23,6 +23,9 @@ int main(int ac, char **av)
 			exit(0);
 		}
 
+		if (read_line > 0 && line[read_line - 1] == '\n')
+			line[read_line - 1] = '\0';
+
 		check_builtin(line);
 	}
 	return (0);
