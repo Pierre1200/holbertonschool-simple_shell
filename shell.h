@@ -25,4 +25,8 @@ int execute_cmd(char **args);
 /* utils */
 void free_array(char **args);
 
+int main(int ac, char **av);
+int check_builtin(char *command);
+
+
 #endif
