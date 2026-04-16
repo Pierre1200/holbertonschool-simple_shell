@@ -54,3 +54,4 @@ Les petites fonctions d'aide pour ne pas surcharger les autres fichiers (Règle 
 The following diagram describes the logic of the `Simple_Shell` function:
 
 <img width="2239" height="3045" alt="Image" src="https://github.com/user-attachments/assets/181cf82c-f8b5-4b6e-b77e-142c9fda1c60" />
+
