@@ -49,3 +49,9 @@ Les commandes internes qui ne nécessitent pas de fork.
 Les petites fonctions d'aide pour ne pas surcharger les autres fichiers (Règle des 40 lignes de Betty).
 * [ ] Fonctions de libération de mémoire (ex: une fonction qui fait proprement un free sur un tableau à deux dimensions char **).
 * [ ] Fonctions d'affichage d'erreurs (pour formater les messages d'erreur exactement comme le vrai sh).
+
+# Flowchart
+The following diagram describes the logic of the `Simple_Shell` function:
+
+<img width="2239" height="3045" alt="Image" src="https://github.com/user-attachments/assets/181cf82c-f8b5-4b6e-b77e-142c9fda1c60" />
+
