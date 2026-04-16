@@ -29,8 +29,7 @@ int execute_cmd(char **args, char *argv0);
 void free_array(char **args);
 
 /* Builtin */
-int check_builtin(char *command);
-void print_error(char *argv0, char *cmd);
+int check_builtin(char **args, char *line);
 
 /* Path */
 char *find_path(char *command);

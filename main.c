@@ -13,7 +13,6 @@ int main(int argc, char **argv)
 	char **args = NULL;
 
 	(void)argc;
-	(void)argv;
 
 	while (1)
 	{
@@ -31,8 +30,13 @@ int main(int argc, char **argv)
 		args = split_line(line);
 
 		/* Handle built-in commands before trying to execute external ones */
-		if (args[0] != NULL && check_builtin(args[0]) == 0)
-			execute_cmd(args, argv[0]);
+		if (args != NULL && args[0] != NULL)
+		{
+			if (check_builtin(args, line) == 0)
+			{
+				execute_cmd(args, argv[0]);
+			}
+		}
 
 		/* Free the current command data before reading the next line */
 		free_array(args);
