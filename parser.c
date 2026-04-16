@@ -16,11 +16,7 @@ char *read_line(void)
 	if (retgetl == -1)
 	{
 		free(line);
-		if (isatty(STDIN_FILENO))
-		{
-			write(STDOUT_FILENO, "\n", 1);
-		}
-		exit(EXIT_SUCCESS);
+		return (NULL);
 	}
 
 	return (line);
