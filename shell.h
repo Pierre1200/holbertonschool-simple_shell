@@ -20,7 +20,7 @@ char *read_line(void);
 char **split_line(char *line);
 
 /* exec */
-int execute_cmd(char **args);
+int execute_cmd(char **args, char *argv0);
 
 /* utils */
 void free_array(char **args);
