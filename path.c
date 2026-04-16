@@ -10,7 +10,7 @@ char *find_path(char *command)
 {
 	int i = 0;
 	int result;
-	char *path_copy, *token_path, *full_path;
+	char *path_copy = NULL, *token_path, *full_path;
 	struct stat st;
 
 	while (environ[i])
@@ -30,7 +30,10 @@ char *find_path(char *command)
 	{
 		full_path = malloc(strlen(token_path) + strlen(command) + 2); /*MemoryAlloc*/
 		if (full_path == NULL)
+		{
+			free(path_copy);
 			return (NULL);
+		}
 
 		strcpy(full_path, token_path); /* Build path */
 		strcat(full_path, "/");
@@ -39,7 +42,7 @@ char *find_path(char *command)
 		result = stat(full_path, &st); /*FILE EXISTS ?*/
 		if (result == 0) /*SUCCESS*/
 		{
-			free(full_path);
+			free(path_copy);
 			return (full_path);
 		}
 		else /*FAILURE*/
@@ -48,4 +51,7 @@ char *find_path(char *command)
 			token_path = strtok(NULL, ":");
 		}
 	}
+
+	free(path_copy);
+	return (NULL);
 }
