@@ -16,7 +16,7 @@ char *read_line(void)
 	if (retgetl == -1)
 	{
 		free(line);
-		retour(NULL);
+		return (NULL);
 	}
 
 	return (line);
