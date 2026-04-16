@@ -34,5 +34,8 @@ int check_builtin(char *command);
 /* Path */
 char *find_path(char *command);
 
+/* Print Error */
+void print_error(char *argv0, char *cmd);
+
 #endif
 
