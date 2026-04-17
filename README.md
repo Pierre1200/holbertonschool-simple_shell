@@ -21,12 +21,28 @@ Environment
 
 ### Authorized Functions & Macros
 The following functions and macros from the standard library are used in this project:
-|`access`|	|`execve`|	|`exit`|	|`fork`|	|`free`|	|`getline`|	|`isatty`|	|`malloc`|
-|`perror`|	|`stat`|	|`strtok`|	|`wait`|	|`waitpid`|	|`write`|	|`_exit`|	|`signal`|
+
+|`access`|	
+|`execve`|	
+|`exit`|	
+|`fork`|	
+|`free`|	
+|`getline`|
+|`isatty`|	
+|`malloc`|
+|`perror`|	
+|`stat`|	
+|`strtok`|	
+|`wait`|	
+|`waitpid`|
+|`write`|
+|`_exit`|
+|`signal`|
 
 ## 📂 Project Structure
 
-| File | Description |	
+| File | Description |
+| :---: | :--- |
 |`main.c`|	Entry point of the shell. Manages the REPL (Read-Eval-Print Loop). |
 |`shell.h`|	Header file with guards, library inclusions, and function prototypes. |
 |`parser.c`|	Handles line reading and tokenization (splitting the input into argv). |
@@ -34,7 +50,7 @@ The following functions and macros from the standard library are used in this pr
 |`path.c`|	Locates the command by searching through the PATH environment variable. |
 |`builtins.c`|	Handles internal shell commands like exit and env. |
 |`utils.c`|	Helper functions for memory cleanup and error formatting. |
-|`AUTHORS.md`| Author file for project contributors. |.
+|`AUTHORS.md`| Author file for project contributors. |
 
 ## ⚙️ How it works (The Flow)
 The shell operates through a continuous cycle often called REPL:
@@ -66,7 +82,7 @@ Compile all source files using the standard flags:
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
 
-3. Usage
+## Usage  
 The shell supports both interactive and non-interactive modes.
 
 1. Interactive Mode:
