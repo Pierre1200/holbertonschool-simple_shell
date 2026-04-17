@@ -105,13 +105,13 @@ To ensure the highest code quality and robustness, this project underwent an AI-
 * **Edge Case Handling:** Validating behavior with empty inputs, long paths, and signals.
 * **Logic Optimization:** Streamlining the path resolution and command execution flow.
 ```Bash
-Robust Path Resolution: The find_path function effectively handles environment parsing with careful memory management, ensuring no leaks occur during string tokenization of the PATH.
+* Robust Path Resolution: The find_path function effectively handles environment parsing with careful memory management, ensuring no leaks occur during string tokenization of the PATH.  
 
-Process Life Cycle: The execution flow correctly implements the fork-execve-wait pattern, providing a stable environment for running external commands.
+* Process Life Cycle: The execution flow correctly implements the fork-execve-wait pattern, providing a stable environment for running external commands.  
 
-Memory Integrity: The shell maintains a clean heap across multiple execution cycles. The "Read-Eval-Print Loop" (REPL) ensures that all temporary buffers are freed before the next prompt.
+* Memory Integrity: The shell maintains a clean heap across multiple execution cycles. The "Read-Eval-Print Loop" (REPL) ensures that all temporary buffers are freed before the next prompt.  
 
-Edge Case Resilience: The parser safely handles empty inputs and excessive whitespace, preventing segmentation faults or unintended command executions
+* Edge Case Resilience: The parser safely handles empty inputs and excessive whitespace, preventing segmentation faults or unintended command executions.
 ```
 
 ## 🛡️ Memory Check (Valgrind)
