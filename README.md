@@ -16,7 +16,7 @@ This repository is the result of a joint effort between Hugo and Pierre, where w
 ## 📋 Requirements
 Environment
 * **Operating System:** Ubuntu 20.04 LTS
-* **Compiler:** `gcc`
+* **Compiler:** `gcc` or `Make`
 * **C Standard:** `gnu89` (compiled with flags `-Wall -Werror -Wextra -pedantic -std=gnu89`)
 
 ### Authorized Functions & Macros
@@ -27,16 +27,16 @@ The following functions and macros from the standard library are used in this pr
 |`exit`|	
 |`fork`|	
 |`free`|	
-|`getline`|
+|`getline`|  
 |`isatty`|	
-|`malloc`|
+|`malloc`|  
 |`perror`|	
 |`stat`|	
 |`strtok`|	
 |`wait`|	
-|`waitpid`|
-|`write`|
-|`_exit`|
+|`waitpid`|  
+|`write`|  
+|`_exit`|  
 |`signal`|
 
 ## 📂 Project Structure
@@ -95,16 +95,6 @@ To compile the shell, navigate to the project root and use the following command
 Once compiled, you can launch the shell in two different modes:
 
 **Interactive Mode** (like a real terminal):
-```bash
-./hsh
-($) /bin/ls
-($) exit
-
-## Usage  
-The shell supports both interactive and non-interactive modes.
-
-1. Interactive Mode:
-
 ```Bash
 ./hsh
 ($) /bin/ls
@@ -116,6 +106,7 @@ file1  file2  hsh
 ```Bash
 echo "/bin/ls" | ./hsh
 ```
+
 ## 🔍 IA Code Review
 
 To ensure the highest code quality and robustness, this project underwent an AI-assisted review focusing on:
