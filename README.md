@@ -16,7 +16,7 @@ This repository is the result of a joint effort between Hugo and Pierre, where w
 ## 📋 Requirements
 Environment
 * **Operating System:** Ubuntu 20.04 LTS
-* **Compiler:** `gcc` or `Make`
+* **Compiler:** `gcc` or `make`
 * **C Standard:** `gnu89` (compiled with flags `-Wall -Werror -Wextra -pedantic -std=gnu89`)
 
 ### Authorized Functions & Macros
@@ -89,6 +89,11 @@ To compile the shell, navigate to the project root and use the following command
 | `make clean` | Removes object files (`.o`) to clean up the workspace. |
 | `make fclean` | Removes both object files and the `hsh` executable. |
 | `make re` | Recompiles the entire project from scratch (`fclean` + `make`). |
+
+you can use too :
+```Bash
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c shell.h builtins.c executor.c utils.c path.c parser.c -o hsh
+```
 
 ### 2. Running the Shell
 
