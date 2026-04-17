@@ -1,0 +1,40 @@
+.TH HSH 1 "April 2026" "Version 1.0" "Holberton School"
+.SH NAME
+hsh \- a simple UNIX command language interpreter (Simple Shell)
+.SH SYNOPSIS
+.B ./hsh
+.SH DESCRIPTION
+.B hsh
+is a basic command line interpreter that reads and executes commands from standard input or a file. It was developed as part of the Simple Shell project to replicate the core behavior of the standard sh (Bourne Shell).
+.PP
+.B Execution Modes:
+.PP
+\fBInteractive mode:\fR
+If standard input is connected to a terminal, the shell displays the prompt \fB($) \fR and waits for user input. The shell reads the line (using \fBgetline\fR), tokenizes it into arguments, and executes the requested command.
+.PP
+\fBNon-interactive mode:\fR
+If the shell is invoked via a pipe (e.g., \fBecho "ls" | ./hsh\fR) or reads from a file, it does not display a prompt. It executes commands silently and exits upon reaching the end of file (EOF).
+.SH ERROR FORMAT
+If a command is not found (neither as a built-in nor within the PATH), \fBhsh\fR prints an error message to the standard error stream (stderr) using the following format:
+.PP
+.I ./hsh: 1: command_name: not found
+.SH BUILT-IN COMMANDS
+The following commands are built natively into the shell and do not require the creation of a new process (fork):
+.TP
+.B cd [directory]
+Changes the current working directory of the process. If no argument is provided, the command defaults to the directory defined by the \fBHOME\fR environment variable. Upon failure (e.g., non-existent directory or insufficient permissions), an error message is printed to stderr.
+.TP
+.B env
+Prints all current environment variables to the standard output.
+.TP
+.B exit
+Exits the shell gracefully with a status code of 0, ensuring all dynamically allocated memory is freed.
+.SH ENVIRONMENT VARIABLES
+.B hsh
+relies on the following environment variables during execution:
+.TP
+.B PATH
+Used to locate executable files when the entered command does not contain an absolute or relative path (a slash). The shell parses the colon-separated (:) directories in the PATH and dynamically builds the executable path.
+.TP
+.B HOME
+Used by the \fBcd\fR built-in command as the default destination directory when no argument is provided.
