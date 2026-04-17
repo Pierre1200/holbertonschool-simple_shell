@@ -75,12 +75,30 @@ Clone the repository using Git:
 git clone https://github.com/Pierre1200/holbertonschool-shell.git
 ```
 
-2. Compilation
-Compile all source files using the standard flags:
+2. Compilation & Usage
 
-```Bash
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
-```
+This project includes a **Makefile** to automate the build process. This ensures the shell is compiled with the required flags for the Holberton School standards.
+
+### 1. Build Instructions
+
+To compile the shell, navigate to the project root and use the following commands:
+
+| Command | Description |
+| :--- | :--- |
+| `make` | Compiles all source files and generates the `hsh` executable. |
+| `make clean` | Removes object files (`.o`) to clean up the workspace. |
+| `make fclean` | Removes both object files and the `hsh` executable. |
+| `make re` | Recompiles the entire project from scratch (`fclean` + `make`). |
+
+### 2. Running the Shell
+
+Once compiled, you can launch the shell in two different modes:
+
+**Interactive Mode** (like a real terminal):
+```bash
+./hsh
+($) /bin/ls
+($) exit
 
 ## Usage  
 The shell supports both interactive and non-interactive modes.
@@ -94,7 +112,7 @@ file1  file2  hsh
 ($) exit
 ```
 
-2. Non-interactive Mode:
+2. Non-interactive Mode: (without compilation)
 ```Bash
 echo "/bin/ls" | ./hsh
 ```
