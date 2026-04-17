@@ -1,3 +1,3 @@
 # This file lists all individuals having contributed content to the repository.
-Rouvellat Pierre
-Lacassagne Hugo
+Rouvellat Pierre.
+Lacassagne Hugo.
