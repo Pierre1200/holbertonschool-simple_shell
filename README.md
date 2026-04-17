@@ -19,25 +19,16 @@ Environment
 * **Compiler:** `gcc` or `make`
 * **C Standard:** `gnu89` (compiled with flags `-Wall -Werror -Wextra -pedantic -std=gnu89`)
 
-### Authorized Functions & Macros
-The following functions and macros from the standard library are used in this project:
+### 📚 Authorized Functions & Macros
 
-|`access`|	
-|`execve`|	
-|`exit`|	
-|`fork`|	
-|`free`|	
-|`getline`|  
-|`isatty`|	
-|`malloc`|  
-|`perror`|	
-|`stat`|	
-|`strtok`|	
-|`wait`|	
-|`waitpid`|  
-|`write`|  
-|`_exit`|  
-|`signal`|
+| Function | Description | Function | Description |
+| :--- | :--- | :--- | :--- |
+| `access` | Check permissions | `stat` | Get file status |
+| `execve` | Execute program | `strtok` | Tokenize strings |
+| `fork` | Create child process | `wait` | Wait for process |
+| `free` | Release memory | `write` | Output to stream |
+| `getline` | Read input line | `_exit` | Terminate process |
+| `malloc` | Allocate memory | `signal` | Handle signals |
 
 ## 📂 Project Structure
 
@@ -90,14 +81,14 @@ To compile the shell, navigate to the project root and use the following command
 | `make fclean` | Removes both object files and the `hsh` executable. |
 | `make re` | Recompiles the entire project from scratch (`fclean` + `make`). |
 
-you can use too :
+you can also use :
 ```Bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c shell.h builtins.c executor.c utils.c path.c parser.c -o hsh
 ```
 
 ### 2. Running the Shell
 
-Once compiled, you can launch the shell in two different modes:
+1. Once compiled, you can launch the shell in two different modes:
 
 **Interactive Mode** (like a real terminal):
 ```Bash
