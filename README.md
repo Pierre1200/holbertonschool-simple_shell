@@ -115,24 +115,8 @@ man ./hsh.1
 
 <img width="1223" height="801" alt="image" src="https://github.com/user-attachments/assets/7687228a-e193-456f-8613-3aa1dd32a459" />
 
-
-## 🔍 IA Code Review
-
-To ensure the highest code quality and robustness, this project underwent an AI-assisted review focusing on:
-* **Memory Safety:** Double-checking allocation/deallocation patterns.
-* **Edge Case Handling:** Validating behavior with empty inputs, long paths, and signals.
-* **Logic Optimization:** Streamlining the path resolution and command execution flow.
-```Bash
-* Robust Path Resolution: The find_path function effectively handles environment parsing with careful memory management, ensuring no leaks occur during string tokenization of the PATH.  
-
-* Process Life Cycle: The execution flow correctly implements the fork-execve-wait pattern, providing a stable environment for running external commands.  
-
-* Memory Integrity: The shell maintains a clean heap across multiple execution cycles. The "Read-Eval-Print Loop" (REPL) ensures that all temporary buffers are freed before the next prompt.  
-
-* Edge Case Resilience: The parser safely handles empty inputs and excessive whitespace, preventing segmentation faults or unintended command executions.
-```
-
 ## 🛡️ Memory Check (Valgrind)
+
 Our implementation has been strictly tested to ensure zero memory leaks. Every allocated block is tracked and freed properly, ensuring the shell can run indefinitely without consuming extra system resources.
 
 Command:
@@ -142,14 +126,14 @@ valgrind --leak-check=full --show-leak-kinds=all ./hsh
 
 Output:
 ```Bash
-==40506== HEAP SUMMARY:
-==40506==     in use at exit: 0 bytes in 0 blocks
-==40506==   total heap usage: 24 allocs, 24 frees, 5,155 bytes allocated
-==40506== 
-==40506== All heap blocks were freed -- no leaks are possible
-==40506== 
-==40506== For lists of detected and suppressed errors, rerun with: -s
-==40506== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==66377== HEAP SUMMARY:
+==66377==     in use at exit: 0 bytes in 0 blocks
+==66377==   total heap usage: 26 allocs, 26 frees, 5,787 bytes allocated
+==66377== 
+==66377== All heap blocks were freed -- no leaks are possible
+==66377== 
+==66377== For lists of detected and suppressed errors, rerun with: -s
+==66377== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
 
 ## ✍️ Authors
