@@ -103,6 +103,19 @@ file1  file2  hsh
 echo "/bin/ls" | ./hsh
 ```
 
+## 📖 Documentation
+The project includes a custom manual page for hsh, following the standard Linux programmer's manual format (man page). It provides a detailed technical description of the shell's behavior, including its execution flow, built-in commands, and environment handling.
+
+How to access the manual
+To view the manual page and learn more about the shell's features, run the following command from the root of the repository:
+
+```Bash
+man ./hsh.1
+```
+
+<img width="1223" height="801" alt="image" src="https://github.com/user-attachments/assets/7687228a-e193-456f-8613-3aa1dd32a459" />
+
+
 ## 🔍 IA Code Review
 
 To ensure the highest code quality and robustness, this project underwent an AI-assisted review focusing on:
