@@ -129,9 +129,9 @@ Output:
 ==66377== HEAP SUMMARY:
 ==66377==     in use at exit: 0 bytes in 0 blocks
 ==66377==   total heap usage: 26 allocs, 26 frees, 5,787 bytes allocated
-==66377== 
+==66377==
 ==66377== All heap blocks were freed -- no leaks are possible
-==66377== 
+==66377==
 ==66377== For lists of detected and suppressed errors, rerun with: -s
 ==66377== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
