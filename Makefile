@@ -1,11 +1,11 @@
-# Nom de l'exécutable
+# Executable name
 NAME = hsh
 
-# Compilateur et Flags
+# Compiler and Flags
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89
 
-# Liste des fichiers source (tous tes .c)
+# List of source files
 SRC = main.c \
       parser.c \
       executor.c \
@@ -13,25 +13,26 @@ SRC = main.c \
       builtins.c \
       utils.c
 
-# Transformation des .c en .o (fichiers objets)
+# Conversion of .c files to .o (object files)
 OBJ = $(SRC:.c=.o)
 
-# Règle principale (par défaut)
+# Main rule (default)
 all: $(NAME)
 
-# Compilation de l'exécutable
+# Link object files to create the executable
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-# Règle pour nettoyer les fichiers objets
+# Rule to remove object files
 clean:
 	rm -f $(OBJ)
 
-# Règle pour nettoyer tout (objets + exécutable)
+# Rule to remove object files and the executable
 fclean: clean
 	rm -f $(NAME)
 
-# Règle pour re-compiler de zéro
+# Rule to re-compile from scratch
 re: fclean all
 
+# Specify that these rules are not files
 .PHONY: all clean fclean re
