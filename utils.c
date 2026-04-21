@@ -22,4 +22,5 @@ void free_array(char **args)
 void print_error(char *argv0, char *cmd, int line_count)
 {
 	fprintf(stderr, "%s: %d: %s: not found\n", argv0, line_count, cmd);
+	fflush(stderr);
 }
