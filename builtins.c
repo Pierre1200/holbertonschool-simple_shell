@@ -12,7 +12,6 @@ int check_builtin(char **args, char *line, char **envp)
 {
 	int i = 0;
 
-	/* Safety check: handle empty input */
 	if (args == NULL || args[0] == NULL)
 		return (0);
 	/* EXIT: Free memory and terminate the shell */
@@ -50,6 +49,5 @@ int check_builtin(char **args, char *line, char **envp)
 		}
 	return (1);
 	}
-
 	return (0); /* No built-in found, continue to external commands */
 }
