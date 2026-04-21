@@ -1,58 +1,67 @@
 #include "shell.h"
 
 /**
- * find_path - placeholder for PATH resolution
- * @command: command to resolve
- * @envp: Environement system
+ * get_path_env - Finds and copies the PATH variable from environment.
+ * @envp: The array of environment variables.
  *
- * Return: NULL
+ * Return: A copy of the PATH string, or NULL if not found.
  */
-char *find_path(char *command, char **envp)
+
+char *get_path_env(char **envp)
 {
 	int i = 0;
-	int result;
-	char *path_copy = NULL, *token_path, *full_path;
-	struct stat st;
 
 	while (envp[i])
 	{
+		/* Check if the line starts with "PATH=" */
 		if (strncmp(envp[i], "PATH=", 5) == 0)
-		{
-			/*Copy whithout "PATH="*/
-			path_copy = strdup(envp[i] + 5);
-			break;
-		}
+		/* Copy everything after the first 5 characters (the prefix) */
+			return (strdup(envp[i] + 5));
 		i++;
 	}
+	return (NULL);
+}
+
+/**
+ * find_path - Locates an executable command in the system PATH.
+ * @command: The name of the command to find.
+ * @envp: The array of environment variables.
+ *
+ * Return: Full path to the executable if found, NULL otherwise.
+ */
+
+char *find_path(char *command, char **envp)
+{
+	char *path_copy, *token, *full_path;
+	struct stat st;
+	/*Get the list of directories from the environment */
+	path_copy = get_path_env(envp);
 	if (path_copy == NULL)
 		return (NULL);
-	token_path = strtok(path_copy, ":");
-	while (token_path != NULL) /*loop for test each folders*/
+	/*Split the PATH string into tokens using ':' as delimiter */
+	token = strtok(path_copy, ":");
+	while (token != NULL)
 	{
-		full_path = malloc(strlen(token_path) + strlen(command) + 2); /*MemoryAlloc*/
+		full_path = malloc(strlen(token) + strlen(command) + 2);
 		if (full_path == NULL)
 		{
 			free(path_copy);
 			return (NULL);
 		}
-
-		strcpy(full_path, token_path); /* Build path */
+		/* Build the absolute path string */
+		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, command);
-
-		result = stat(full_path, &st); /*FILE EXISTS ?*/
-		if (result == 0) /*SUCCESS*/
+		/*Check if the constructed path exists on the system*/
+		if (stat(full_path, &st) == 0)
 		{
 			free(path_copy);
 			return (full_path);
 		}
-		else /*FAILURE*/
-		{
-			free(full_path);
-			token_path = strtok(NULL, ":");
-		}
+		free(full_path);
+		token = strtok(NULL, ":");
 	}
-
 	free(path_copy);
 	return (NULL);
 }
+

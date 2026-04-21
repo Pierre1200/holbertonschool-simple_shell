@@ -29,6 +29,7 @@ void free_array(char **args);
 int check_builtin(char **args, char *line, char **envp);
 
 /* Path */
+char *get_path_env(char **envp);
 char *find_path(char *command, char **envp);
 
 /* Print Error */

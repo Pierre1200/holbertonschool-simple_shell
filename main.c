@@ -4,7 +4,7 @@
  * main - Entry point for the simple shell loop
  * @argc: Argument count
  * @argv: Argument vector
- * @envp: Environement system
+ * @envp: The array of environment variables.
  *
  * Return: Always 0
  */
