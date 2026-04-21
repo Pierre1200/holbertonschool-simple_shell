@@ -21,5 +21,7 @@ void free_array(char **args)
  */
 void print_error(char *argv0, char *cmd)
 {
+	fflush(stdout);
 	fprintf(stderr, "%s: 1: %s: not found\n", argv0, cmd);
+	fflush(stderr);
 }
