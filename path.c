@@ -14,12 +14,12 @@ char *find_path(char *command, char **envp)
 	char *path_copy = NULL, *token_path, *full_path;
 	struct stat st;
 
-	while (environ[i])
+	while (envp[i])
 	{
-		if (strncmp(environ[i], "PATH=", 5) == 0)
+		if (strncmp(envp[i], "PATH=", 5) == 0)
 		{
 			/*Copy whithout "PATH="*/
-			path_copy = strdup(environ[i] + 5);
+			path_copy = strdup(envp[i] + 5);
 			break;
 		}
 		i++;

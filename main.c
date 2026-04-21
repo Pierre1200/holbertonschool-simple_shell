@@ -33,9 +33,9 @@ int main(int argc, char **argv, char **envp)
 		/* Handle built-in commands before trying to execute external ones */
 		if (args != NULL && args[0] != NULL)
 		{
-			if (check_builtin(args, line) == 0)
+			if (check_builtin(args, line, envp) == 0)
 			{
-				execute_cmd(args, argv[0]);
+				execute_cmd(args, argv[0], envp);
 			}
 		}
 
