@@ -42,13 +42,13 @@ char **split_line(char *line)
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(line, " \n");
+	token = strtok(line, " \t\r\n\a");
 
 	while (token != NULL)
 	{
 		tokens[i] = token;
 		i++;
-		token = strtok(NULL, " \n");
+		token = strtok(NULL, " \t\r\n\a");
 	}
 
 	tokens[i] = NULL;

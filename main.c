@@ -28,14 +28,13 @@ int main(int argc, char **argv, char **envp)
 		/* Stop the loop when read_line reaches EOF */
 		if (line == NULL)
 			break;
-
+		line_count++;
 		/* Split the line into tokens */
 		args = split_line(line);
 
 		/* Handle built-in commands before trying to execute external ones */
 		if (args != NULL && args[0] != NULL)
 		{
-			line_count++;
 			if (check_builtin(args, line, envp) == 0)
 			{
 				status = execute_cmd(args, argv[0], envp, line_count);
