@@ -1,18 +1,18 @@
 #include "shell.h"
-#include <string.h>
 
 /**
- * execute_cmd - Executes the command passed as an argument.
- * @args: The array of words returned by split_line.
- * @argv0: The name of the shell program.
- * @envp: The array of environment variables.
- *
- * Return: 1 to continue the shell loop, 0 to stop.
- */
+* execute_cmd - Executes the command passed as an argument.
+* @args: The array of words returned by split_line.
+* @argv0: The name of the shell program.
+* @envp: The array of environment variables.
+*
+* Return: 1 to continue the shell loop, 0 to stop.
+*/
 int execute_cmd(char **args, char *argv0, char **envp)
 {
 	pid_t child;
 	int status;
+
 	char *command_path = NULL;
 
 	if (args[0] == NULL)
@@ -20,35 +20,34 @@ int execute_cmd(char **args, char *argv0, char **envp)
 
 	if (strchr(args[0], '/') != NULL)
 	{
-		if (access(args[0], F_OK) == 0)
+		if (access(args[0], X_OK) == 0)
 			command_path = strdup(args[0]);
 	}
 	else
 	{
 		command_path = find_path(args[0], envp);
 	}
-
 	if (command_path == NULL)
 	{
 		print_error(argv0, args[0]);
 		return (127);
 	}
+
 	child = fork();
 	if (child == 0)
 	{
-		execve(command_path, args, envp);
-		perror(argv0);
-		free(command_path);
-		_exit(EXIT_FAILURE);
+		if (execve(command_path, args, envp) == -1)
+		{
+			perror(argv0);
+			free(command_path);
+			_exit(127);
+		}
 	}
 	else if (child == -1)
-	{
-		perror("Error");
-	}
+		perror("fork");
 	else
-	{
 		wait(&status);
-	}
+
 	free(command_path);
 	return (1);
 }
