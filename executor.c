@@ -40,7 +40,7 @@ int execute_cmd(char **args, char *argv0, char **envp)
 		{
 			perror(argv0);
 			free(command_path);
-			_exit(127);
+			_exit(0);
 		}
 	}
 	else if (child == -1)
