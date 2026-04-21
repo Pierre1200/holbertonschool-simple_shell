@@ -1,11 +1,12 @@
 #include "shell.h"
 
 /**
- * execute_cmd - Exécute la commande passée en argument.
- * @args: Le tableau de mots renvoyé par split_line.
- * @argv0: Nom du programme shell.
- * @envp: Environ
- * Return: 1 pour continuer la boucle du shell, 0 pour arrêter.
+ * execute_cmd - Executes the command passed as an argument.
+ * @args: The array of words returned by split_line.
+ * @argv0: The name of the shell program.
+ * @envp: The array of environment variables.
+ *
+ * Return: 1 to continue the shell loop, 0 to stop.
  */
 int execute_cmd(char **args, char *argv0, char **envp)
 {
@@ -14,9 +15,7 @@ int execute_cmd(char **args, char *argv0, char **envp)
 	char *command_path;
 
 	if (args[0] == NULL)
-	{
 		return (1);
-	}
 
 	command_path = find_path(args[0], envp);
 	if (command_path == NULL)
@@ -32,12 +31,10 @@ int execute_cmd(char **args, char *argv0, char **envp)
 			free(command_path);
 		exit(EXIT_FAILURE);
 	}
-
 	else if (child == -1)
 	{
 		perror("Error");
 	}
-
 	else
 	{
 		wait(&status);
