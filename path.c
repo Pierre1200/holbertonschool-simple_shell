@@ -44,6 +44,7 @@ char *find_path(char *command, char **envp)
 	path_copy = get_path_env(envp);
 	if (path_copy == NULL)
 		return (NULL);
+	/*Split the PATH string into tokens using ':' as delimiter */
 	token = strtok(path_copy, ":");
 	while (token != NULL)
 	{
@@ -53,18 +54,12 @@ char *find_path(char *command, char **envp)
 			free(path_copy);
 			return (NULL);
 		}
+		/* Build the absolute path string */
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, command);
 
-		if (stat(full_path, &st) == 0 && S_ISREG(st.st_mode))
-		{
-			if (access(full_path, X_OK) == 0)
-			{
-				free(path_copy);
-				return (full_path);
-			}
-		}
+		/*Check if the constructed path exists on the system*/
 		if (stat(full_path, &st) == 0)
 		{
 			free(path_copy);
@@ -76,3 +71,4 @@ char *find_path(char *command, char **envp)
 	free(path_copy);
 	return (NULL);
 }
+

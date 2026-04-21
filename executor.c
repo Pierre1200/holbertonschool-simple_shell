@@ -1,5 +1,5 @@
 #include "shell.h"
-#include <string.h> /* Pour utiliser strchr() */
+#include <string.h>
 
 /**
  * execute_cmd - Executes the command passed as an argument.
@@ -31,7 +31,7 @@ int execute_cmd(char **args, char *argv0, char **envp)
 	if (command_path == NULL)
 	{
 		print_error(argv0, args[0]);
-		return (1);
+		return (127);
 	}
 	child = fork();
 	if (child == 0)

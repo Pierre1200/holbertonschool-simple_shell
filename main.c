@@ -12,6 +12,7 @@ int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL;
 	char **args = NULL;
+	int status = 0;
 
 	(void)argc;
 
@@ -19,7 +20,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		/* Print the prompt only in interactive mode */
 		if (isatty(STDIN_FILENO))
-			printf("($) ");
+			write(STDOUT_FILENO, "($) ", 4);
 
 		/* Read one full line from standard input */
 		line = read_line();
@@ -35,7 +36,7 @@ int main(int argc, char **argv, char **envp)
 		{
 			if (check_builtin(args, line, envp) == 0)
 			{
-				execute_cmd(args, argv[0], envp);
+				status = execute_cmd(args, argv[0], envp);
 			}
 		}
 
@@ -45,6 +46,6 @@ int main(int argc, char **argv, char **envp)
 		args = NULL;
 		line = NULL;
 	}
-	return (0);
+	return (status);
 }
 
