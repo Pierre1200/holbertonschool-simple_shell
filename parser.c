@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * read_line - Lit la ligne tapée par l'utilisateur (le client).
+ * read_line - Reads a line of input from standard input.
  *
- * Return: Un pointeur vers la chaîne de caractères lue.
+ * Return: A pointer to the read string, or NULL on EOF/failure.
  */
 char *read_line(void)
 {
@@ -23,24 +23,24 @@ char *read_line(void)
 }
 
 /**
- * split_line - Découpe la chaîne de caractères en tableau de mots (tokens).
- * @line: La chaîne de caractères brute renvoyée par read_line.
+ * split_line - Splits a string into an array of words (tokens).
+ * @line: The raw string returned by read_line.
  *
- * Return: Un tableau de pointeurs vers chaque mot (NULL terminated).
+ * Return: A NULL-terminated array of pointers to each word.
  */
 char **split_line(char *line)
 {
 	int buff_tab = 64;
 	int i = 0;
-	char **tokens; /* tableau */
+	char **tokens;
 	char *token;
 
 	tokens = malloc(buff_tab * sizeof(char *));
-		if (tokens == NULL)
-		{
-			write(STDERR_FILENO, "Allocation error\n", 17);
-			exit(EXIT_FAILURE);
-		}
+	if (tokens == NULL)
+	{
+		write(STDERR_FILENO, "Allocation error\n", 17);
+		exit(EXIT_FAILURE);
+	}
 
 	token = strtok(line, " \n");
 
