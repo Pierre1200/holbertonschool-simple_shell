@@ -5,10 +5,11 @@
  * @args: Array of strings containing the command and its arguments.
  * @line: The full string read by getline (needed for cleanup before exit).
  * @envp: The array of environment variables.
+ * @status: The exit status of the last executed command.
  *
  * Return: 1 if a built-in was executed, 0 otherwise.
  */
-int check_builtin(char **args, char *line, char **envp)
+int check_builtin(char **args, char *line, char **envp, int status)
 {
 	int i = 0;
 
@@ -19,7 +20,7 @@ int check_builtin(char **args, char *line, char **envp)
 	{
 		free(line);
 		free_array(args);
-		exit(0);
+		exit(status);
 	}
 	if (strcmp(args[0], "env") == 0)
 	{

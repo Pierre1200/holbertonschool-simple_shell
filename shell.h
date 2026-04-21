@@ -27,7 +27,7 @@ char **split_line(char *line);
 int execute_cmd(char **args, char *argv0, char **envp, int line_count);
 
 /* Built-in Commands (builtins.c) */
-int check_builtin(char **args, char *line, char **envp);
+int check_builtin(char **args, char *line, char **envp, int status);
 
 /* Path */
 char *get_path_env(char **envp);

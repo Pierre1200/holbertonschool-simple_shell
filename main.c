@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * main - Entry point for the simple shell loop
- * @argc: Argument count
- * @argv: Argument vector
+ * main - Entry point for the simple shell loop.
+ * @argc: Argument count (unused).
+ * @argv: Argument vector (contains the name of the program).
  * @envp: The array of environment variables.
  *
- * Return: Always 0
+ * Return: The exit status of the last executed command.
  */
 int main(int argc, char **argv, char **envp)
 {
@@ -21,28 +21,28 @@ int main(int argc, char **argv, char **envp)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "($) ", 4);
+
 		line = read_line();
-		if (line == NULL) /* Stop the loop when read_line reaches EOF */
+		if (line == NULL)
 			break;
+
 		line_count++;
 		args = split_line(line);
-		/* Handle built-in commands before trying to execute external ones */
-		if (args != NULL || args[0] != NULL)
+
+		if (args == NULL || args[0] == NULL)
 		{
-			if (check_builtin(args, line, envp) == 0)
-			{
-				free_array(args);
-				free(line);
-				continue;
-			}
-			if (check_builtin(args, line, envp) == 0)
-			{
-				status = execute_cmd(args, argv[0], envp, line_count);
-			}
-			else
-			{
-				status = 0;
-			}
+			free_array(args);
+			free(line);
+			continue;
+		}
+
+		if (check_builtin(args, line, envp, status) == 0)
+		{
+			status = execute_cmd(args, argv[0], envp, line_count);
+		}
+		else
+		{
+			status = 0;
 		}
 		free_array(args);
 		free(line);
@@ -51,4 +51,3 @@ int main(int argc, char **argv, char **envp)
 	}
 	return (status);
 }
-
