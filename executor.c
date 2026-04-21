@@ -32,22 +32,30 @@ int execute_cmd(char **args, char *argv0, char **envp)
 		print_error(argv0, args[0]);
 		return (127);
 	}
-
 	child = fork();
-	if (child == 0)
-	{
-		if (execve(command_path, args, envp) == -1)
-		{
-			perror(argv0);
-			free(command_path);
-			_exit(0);
-		}
-	}
-	else if (child == -1)
-		perror("fork");
-	else
-		wait(&status);
+    if (child == 0)
+    {
+        if (execve(command_path, args, envp) == -1)
+        {
+            perror(argv0);
+            free(command_path);
+            _exit(127);
+        }
+    }
+    else if (child == -1)
+    {
+        perror("fork");
+        free(command_path);
+        return (1);
+    }
+    else
+    {
+        wait(&status);
+    }
 
-	free(command_path);
-	return (1);
+    free(command_path);
+
+    if (WIFEXITED(status))
+        return (WEXITSTATUS(status));
+    return (0);
 }

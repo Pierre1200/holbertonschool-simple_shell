@@ -22,7 +22,6 @@ int main(int argc, char **argv, char **envp)
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "($) ", 4);
 
-		/* Read one full line from standard input */
 		line = read_line();
 		/* Stop the loop when read_line reaches EOF */
 		if (line == NULL)
@@ -37,6 +36,10 @@ int main(int argc, char **argv, char **envp)
 			if (check_builtin(args, line, envp) == 0)
 			{
 				status = execute_cmd(args, argv[0], envp);
+			}
+			else
+			{
+				status = 0;
 			}
 		}
 
