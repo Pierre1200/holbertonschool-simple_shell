@@ -41,6 +41,9 @@ Environment
 |`path.c`|	Locates the command by searching through the PATH environment variable. |
 |`builtins.c`|	Handles internal shell commands like exit and env. |
 |`utils.c`|	Helper functions for memory cleanup and error formatting. |
+|`Makefile`|	Build script to automate the compilation process. |
+|`hsh.1`|	Manual page (manpage) explaining how to use the shell. |
+|`.gitignore`|	Specifies files and directories to be ignored by Git. |
 |`AUTHORS.md`| Author file for project contributors. |
 
 ## ⚙️ How it works (The Flow)
