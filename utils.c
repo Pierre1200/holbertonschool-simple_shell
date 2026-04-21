@@ -16,12 +16,12 @@ void free_array(char **args)
  * print_error - Prints an error message if a command is not found.
  * @argv0: The name of the shell program (e.g., ./hsh).
  * @cmd: The command that caused the error (e.g., qwerty).
- *
+ * @line_count:count
  * Return: void.
  */
-void print_error(char *argv0, char *cmd)
+void print_error(char *argv0, char *cmd, int line_count)
 {
 	fflush(stdout);
-	fprintf(stderr, "%s: 1: %s: not found\n", argv0, cmd);
+	fprintf(stderr, "%s: %d: %s: not found\n", argv0, line_count, cmd);
 	fflush(stderr);
 }

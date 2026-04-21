@@ -8,11 +8,10 @@
 *
 * Return: 1 to continue the shell loop, 0 to stop.
 */
-int execute_cmd(char **args, char *argv0, char **envp)
+int execute_cmd(char **args, char *argv0, char **envp, int line_count)
 {
 	pid_t child;
 	int status;
-
 	char *command_path = NULL;
 
 	if (args[0] == NULL)
@@ -29,7 +28,7 @@ int execute_cmd(char **args, char *argv0, char **envp)
 	}
 	if (command_path == NULL)
 	{
-		print_error(argv0, args[0]);
+		print_error(argv0, args[0], line_count);
 		return (127);
 	}
 	child = fork();

@@ -5,6 +5,7 @@
  * @argc: Argument count
  * @argv: Argument vector
  * @envp: The array of environment variables.
+ * @line_count: count
  *
  * Return: Always 0
  */
@@ -13,11 +14,13 @@ int main(int argc, char **argv, char **envp)
 	char *line = NULL;
 	char **args = NULL;
 	int status = 0;
+	int line_count = 0;
 
 	(void)argc;
 
 	while (1)
 	{
+		line_count++;
 		/* Print the prompt only in interactive mode */
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "($) ", 4);
@@ -35,15 +38,13 @@ int main(int argc, char **argv, char **envp)
 		{
 			if (check_builtin(args, line, envp) == 0)
 			{
-				status = execute_cmd(args, argv[0], envp);
+				status = execute_cmd(args, argv[0], envp, line_count);
 			}
 			else
 			{
 				status = 0;
 			}
 		}
-
-		/* Free the current command data before reading the next line */
 		free_array(args);
 		free(line);
 		args = NULL;

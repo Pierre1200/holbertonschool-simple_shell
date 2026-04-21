@@ -24,7 +24,7 @@ char *read_line(void);
 char **split_line(char *line);
 
 /* Execution (executor.c) */
-int execute_cmd(char **args, char *argv0, char **envp);
+int execute_cmd(char **args, char *argv0, char **envp, int line_count);
 
 /* Built-in Commands (builtins.c) */
 int check_builtin(char **args, char *line, char **envp);
@@ -35,6 +35,6 @@ char *find_path(char *command, char **envp);
 
 /* Utilities and Error Handling (utils.c) */
 void free_array(char **args);
-void print_error(char *argv0, char *cmd);
+void print_error(char *argv0, char *cmd, int count);
 
 #endif
