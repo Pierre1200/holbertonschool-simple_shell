@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <string.h> /* Pour utiliser strchr() */
 
 /**
  * execute_cmd - Executes the command passed as an argument.
@@ -14,20 +13,22 @@ int execute_cmd(char **args, char *argv0, char **envp)
 	pid_t child;
 	int status;
 	char *command_path = NULL;
+	struct stat st;
 
 	if (args[0] == NULL)
 		return (1);
-
 	if (strchr(args[0], '/') != NULL)
 	{
-		if (access(args[0], F_OK) == 0)
+		if (stat(args[0], &st) == 0 && S_ISREG(st.st_mode) &&
+		    access(args[0], X_OK) == 0)
+		{
 			command_path = strdup(args[0]);
+		}
 	}
 	else
 	{
 		command_path = find_path(args[0], envp);
 	}
-
 	if (command_path == NULL)
 	{
 		print_error(argv0, args[0]);
@@ -41,14 +42,10 @@ int execute_cmd(char **args, char *argv0, char **envp)
 		free(command_path);
 		_exit(EXIT_FAILURE);
 	}
-	else if (child == -1)
-	{
-		perror("Error");
-	}
-	else
-	{
+	else if (child > 0)
 		wait(&status);
-	}
+	else
+		perror("Error");
 	free(command_path);
 	return (1);
 }
