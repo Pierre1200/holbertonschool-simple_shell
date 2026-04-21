@@ -24,11 +24,11 @@ int check_builtin(char **args, char *line, char **envp)
 	/* ENV: Print all environment variables */
 	if (strcmp(args[0], "env") == 0)
 	{
-		while (envp[i] != NULL)
-		{
-			printf("%s\n", envp[i]);
-			i++;
-		}
+	for (i = 0; envp[i] != NULL; i++)
+	{
+	write(STDOUT_FILENO, envp[i], strlen(envp[i]));
+	write(STDOUT_FILENO, "\n", 1);
+	}
 		return (1);
 	}
 	/* CD: Change the current working directory */
