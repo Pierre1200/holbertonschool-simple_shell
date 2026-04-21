@@ -20,7 +20,6 @@ int main(int argc, char **argv, char **envp)
 
 	while (1)
 	{
-		line_count++;
 		/* Print the prompt only in interactive mode */
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "($) ", 4);
@@ -36,6 +35,7 @@ int main(int argc, char **argv, char **envp)
 		/* Handle built-in commands before trying to execute external ones */
 		if (args != NULL && args[0] != NULL)
 		{
+			line_count++;
 			if (check_builtin(args, line, envp) == 0)
 			{
 				status = execute_cmd(args, argv[0], envp, line_count);
