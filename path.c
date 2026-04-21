@@ -11,6 +11,9 @@ char *get_path_env(char **envp)
 {
 	int i = 0;
 
+	if (envp == NULL)
+		return (NULL);
+
 	while (envp[i])
 	{
 		/* Check if the line starts with "PATH=" */
@@ -34,11 +37,13 @@ char *find_path(char *command, char **envp)
 {
 	char *path_copy, *token, *full_path;
 	struct stat st;
+
+	if (command == NULL || command[0] == '\0')
+		return (NULL);
 	/*Get the list of directories from the environment */
 	path_copy = get_path_env(envp);
 	if (path_copy == NULL)
 		return (NULL);
-	/*Split the PATH string into tokens using ':' as delimiter */
 	token = strtok(path_copy, ":");
 	while (token != NULL)
 	{
@@ -48,11 +53,18 @@ char *find_path(char *command, char **envp)
 			free(path_copy);
 			return (NULL);
 		}
-		/* Build the absolute path string */
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, command);
-		/*Check if the constructed path exists on the system*/
+
+		if (stat(full_path, &st) == 0 && S_ISREG(st.st_mode))
+		{
+			if (access(full_path, X_OK) == 0)
+			{
+				free(path_copy);
+				return (full_path);
+			}
+		}
 		if (stat(full_path, &st) == 0)
 		{
 			free(path_copy);
@@ -64,4 +76,3 @@ char *find_path(char *command, char **envp)
 	free(path_copy);
 	return (NULL);
 }
-
