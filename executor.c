@@ -36,7 +36,6 @@ int execute_cmd(char **args, char *argv0, char **envp, int line_count)
     {
         if (execve(command_path, args, envp) == -1)
         {
-            perror(argv0);
             free(command_path);
             _exit(127);
         }
