@@ -42,7 +42,6 @@ int execute_cmd(char **args, char *argv0, char **envp, int line_count)
     }
     else if (child == -1)
     {
-        perror("fork");
         free(command_path);
         return (1);
     }

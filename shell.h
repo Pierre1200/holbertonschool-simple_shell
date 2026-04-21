@@ -35,6 +35,6 @@ char *find_path(char *command, char **envp);
 
 /* Utilities and Error Handling (utils.c) */
 void free_array(char **args);
-void print_error(char *argv0, char *cmd, int count);
+void print_error(char *argv0, char *cmd, int line_count);
 
 #endif

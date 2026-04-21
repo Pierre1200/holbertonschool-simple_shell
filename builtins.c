@@ -13,23 +13,23 @@ int check_builtin(char **args, char *line, char **envp)
 	int i = 0;
 
 	if (args == NULL || args[0] == NULL)
-		return (0);
-	/* EXIT: Free memory and terminate the shell */
+	return (0);
+
 	if (strcmp(args[0], "exit") == 0)
 	{
 		free(line);
 		free_array(args);
 		exit(0);
 	}
-	/* ENV: Print all environment variables */
 	if (strcmp(args[0], "env") == 0)
 	{
-		for (i = 0; envp[i] != NULL; i++)
+		while (envp[i])
 		{
 			write(STDOUT_FILENO, envp[i], strlen(envp[i]));
 			write(STDOUT_FILENO, "\n", 1);
+			i++;
 		}
-		return (1);
+	return (1);
 	}
-	return (0); /* No built-in found, continue to external commands */
+return (0);
 }
