@@ -1,6 +1,35 @@
 #include "shell.h"
 
 /**
+ * _getenv - Retrieves the value of an environment variable.
+ * @name: The name of the variable to find (e.g., "HOME").
+ * @envp: The array of environment variables.
+ *
+ * Return: A pointer to the value string, or NULL if not found.
+ */
+char *_getenv(const char *name, char **envp)
+{
+	int i = 0;
+	size_t len;
+
+	if (name == NULL || envp == NULL)
+		return (NULL);
+
+	len = strlen(name);
+	while (envp[i])
+	{
+		/* Vérifie si la ligne commence par "nom" et est suivi d'un "=" */
+		if (strncmp(envp[i], name, len) == 0 && envp[i][len] == '=')
+		{
+			/* Renvoie un pointeur juste après le signe '=' */
+			return (envp[i] + len + 1);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+/**
  * check_builtin - Checks and executes built-in commands.
  * @args: Array of strings containing the command and its arguments.
  * @line: The full string read by getline (needed for cleanup before exit).
@@ -22,6 +51,7 @@ int check_builtin(char **args, char *line, char **envp, int status)
 		free_array(args);
 		exit(status);
 	}
+
 	if (strcmp(args[0], "env") == 0)
 	{
 		while (envp[i])
@@ -31,6 +61,23 @@ int check_builtin(char **args, char *line, char **envp, int status)
 			i++;
 		}
 	return (1);
+	}
+
+	if (strcmp(args[0], "cd") == 0)
+	{
+		char *home;
+
+		if (args[1] == NULL)
+		{
+			home = _getenv("HOME", envp);
+			if (home != NULL)
+				chdir(home);
+		}
+		else if (chdir(args[1]) != 0)
+		{
+			perror("cd");
+		}
+		return (1);
 	}
 return (0);
 }
