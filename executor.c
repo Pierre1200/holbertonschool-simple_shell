@@ -12,16 +12,18 @@ int execute_cmd(char **args, char *argv0, char **envp)
 {
 	pid_t child;
 	int status;
-
+	struct stat st;
 	char *command_path = NULL;
 
 	if (args[0] == NULL)
 		return (1);
-
 	if (strchr(args[0], '/') != NULL)
 	{
-		if (access(args[0], X_OK) == 0)
-			command_path = strdup(args[0]);
+		if (stat(args[0], &st) == 0 && S_ISREG(st.st_mode))
+		{
+			if (access(args[0], X_OK) == 0)
+				command_path = strdup(args[0]);
+		}
 	}
 	else
 	{
@@ -32,7 +34,6 @@ int execute_cmd(char **args, char *argv0, char **envp)
 		print_error(argv0, args[0]);
 		return (1);
 	}
-
 	child = fork();
 	if (child == 0)
 	{
@@ -47,7 +48,6 @@ int execute_cmd(char **args, char *argv0, char **envp)
 		perror("fork");
 	else
 		wait(&status);
-
 	free(command_path);
 	return (1);
 }

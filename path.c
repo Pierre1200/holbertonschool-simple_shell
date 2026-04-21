@@ -65,11 +65,6 @@ char *find_path(char *command, char **envp)
 				return (full_path);
 			}
 		}
-		if (stat(full_path, &st) == 0)
-		{
-			free(path_copy);
-			return (full_path);
-		}
 		free(full_path);
 		token = strtok(NULL, ":");
 	}
