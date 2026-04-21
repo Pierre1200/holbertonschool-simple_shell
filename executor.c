@@ -12,23 +12,29 @@ int execute_cmd(char **args, char *argv0, char **envp)
 {
 	pid_t child;
 	int status;
-	char *command_path;
+	char *command_path = NULL;
 
 	if (args[0] == NULL)
 		return (1);
 
-	command_path = find_path(args[0], envp);
+	if (access(args[0], F_OK) == 0)
+		command_path = strdup(args[0]);
+	else
+		command_path = find_path(args[0], envp);
+
 	if (command_path == NULL)
-		command_path = args[0];
+	{
+		print_error(argv0, args[0]);
+		return (1);
+	}
 
 	child = fork();
 
 	if (child == 0)
 	{
 		execve(command_path, args, envp);
-		print_error(argv0, args[0]);
-		if (command_path != args[0])
-			free(command_path);
+		perror(argv0);
+		free(command_path);
 		exit(EXIT_FAILURE);
 	}
 	else if (child == -1)
@@ -38,9 +44,8 @@ int execute_cmd(char **args, char *argv0, char **envp)
 	else
 	{
 		wait(&status);
-		if (command_path != args[0])
-			free(command_path);
 	}
 
+	free(command_path);
 	return (1);
 }
