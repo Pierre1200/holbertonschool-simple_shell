@@ -3,10 +3,11 @@
 /**
  * find_path - placeholder for PATH resolution
  * @command: command to resolve
+ * @envp: Environement system
  *
  * Return: NULL
  */
-char *find_path(char *command)
+char *find_path(char *command, char **envp)
 {
 	int i = 0;
 	int result;

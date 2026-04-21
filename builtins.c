@@ -4,10 +4,11 @@
  * check_builtin - Vérifie et exécute les commandes intégrées (built-ins).
  * @args: Le tableau de mots (pour vérifier la commande et ses arguments).
  * @line: La ligne complète lue par getline (pour le nettoyage en cas d'exit).
+ * @envp: Environement system
  *
  * Return: 1 si un built-in a été exécuté, 0 sinon.
  */
-int check_builtin(char **args, char *line)
+int check_builtin(char **args, char *line, char **envp)
 {
 	int i = 0;
 
@@ -23,7 +24,7 @@ int check_builtin(char **args, char *line)
 
 	if (strcmp(args[0], "env") == 0)
 	{
-		while (environ[i] != NULL)
+		while (envp[i] != NULL)
 		{
 			printf("%s\n", environ[i]);
 			i++;

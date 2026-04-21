@@ -4,10 +4,11 @@
  * main - Entry point for the simple shell loop
  * @argc: Argument count
  * @argv: Argument vector
+ * @envp: Environement system
  *
  * Return: Always 0
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
 	char *line = NULL;
 	char **args = NULL;
