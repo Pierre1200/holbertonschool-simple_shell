@@ -4,6 +4,7 @@
  * execute_cmd - Exécute la commande passée en argument.
  * @args: Le tableau de mots renvoyé par split_line.
  * @argv0: Nom du programme shell.
+ * @envp: Environ
  * Return: 1 pour continuer la boucle du shell, 0 pour arrêter.
  */
 int execute_cmd(char **args, char *argv0, char **envp)
