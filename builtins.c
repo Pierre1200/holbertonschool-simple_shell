@@ -18,10 +18,10 @@ char *_getenv(const char *name, char **envp)
 	len = strlen(name);
 	while (envp[i])
 	{
-		/* Vérifie si la ligne commence par "nom" et est suivi d'un "=" */
+		/* Checks if the line starts with "name" and is followed by a "=" */
 		if (strncmp(envp[i], name, len) == 0 && envp[i][len] == '=')
 		{
-			/* Renvoie un pointeur juste après le signe '=' */
+		/* Returns a pointer just after the '=' sign */
 			return (envp[i] + len + 1);
 		}
 		i++;
